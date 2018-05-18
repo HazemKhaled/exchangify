@@ -1,0 +1,19 @@
+{
+  "name": "exchangify",
+  "version": "0.1.4",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "currency",
+    "currencies",
+    "openexchangerates",
+    "rates",
+    "eventrify",
+    "exchangify"
+  ],
+  "author": "Eventrify Ltd.",
+  "license": "ISC"
+}
