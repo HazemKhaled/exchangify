@@ -40,6 +40,8 @@ class Exchangify {
                     if (error) reject(error)
                     resolve(response)
                 })
+            } else {
+                resolve(this.ratesResponse)
             }
         })
     }
