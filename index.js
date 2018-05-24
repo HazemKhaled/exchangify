@@ -8,11 +8,14 @@ class Exchangify {
         this.refreshTime = 0
     }
 
-    exchange(amount, from, to, cb) {
+    exchange(a, from, to, cb) {
+        let amount = a
+        if (typeof a === "string") amount = Number(a)
+
         if (!this.appId) throw new Error("You forgot to set 'Openexchangerates app id' i class constructor")
         return new Promise(async (resolve, reject) => {
             try {
-                resolve(await this._getExchangeRates())
+                resolve(await this.getExchangeRates())
             } catch (error) {
                 this.lastRefreshTime = 0
                 this.refreshTime = 0
@@ -31,13 +34,15 @@ class Exchangify {
         return (amount / rates[from]) * rates[to]
     }
 
-    _getExchangeRates() {
+    getExchangeRates() {
         return new Promise(async (resolve, reject) => {
             if (this._shouldRefreshRates()) {
                 this.lastRefreshTime = Date.now()
-                this.refreshTime = this.lastRefreshTime + (5000)
+                this.refreshTime = this.lastRefreshTime + (60 * 60 * 1000)
+                console.log("fetching rates...")
                 await this._fetchRates((error, response) => {
                     if (error) reject(error)
+                    this.ratesResponse = response
                     resolve(response)
                 })
             } else {

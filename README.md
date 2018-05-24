@@ -38,10 +38,6 @@ exchangify.exchange(100, "EUR", "HRK", (error, amount) => {
 })
 ```
 
-```
-amount: Number
-```
-
 ### Dependencies
 None.
 
