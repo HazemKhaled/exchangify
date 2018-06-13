@@ -20,22 +20,33 @@ npm i exchangify --save
 
 ### Example
 
-```
+```javascript
 const Exchangify = require("exchangify")
 const exchangify = new Exchangify("openexchangerates_app_id")
 ```
 Using promises:
-```
+```javascript
 exchangify.exchange(100, "EUR", "HRK")
     .then(amount => console.log(amount))
 ```
 
 Using callback function:
-```
+```javascript
 exchangify.exchange(100, "EUR", "HRK", (error, amount) => {
     if (error) return console.log(error)
     console.log(amount)
 })
+```
+
+Get all currencies
+```javascript
+exchangify
+  .getExchangeRates()
+  .then(res =>
+    Object.entries(res.rates).forEach(([currency, rate]) =>
+      console.log(`from ${res.base} to ${currency} = ${rate}`)
+    )
+  );
 ```
 
 ### Dependencies
